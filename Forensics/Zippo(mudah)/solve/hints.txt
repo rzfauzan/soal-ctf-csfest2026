@@ -1,0 +1,5 @@
+ZIPPO CHALLENGE - HINTS
+
+Hint 1: Binwalk dapat menemukan file tersembunyi di dalam file
+Hint 2: Flag palsu memiliki pola yang berbeda dengan flag asli
+Hint 3: Ada 67 layer yang harus kamu lalui untuk mendapatkan flag asli

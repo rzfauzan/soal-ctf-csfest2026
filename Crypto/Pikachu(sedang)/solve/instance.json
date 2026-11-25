@@ -1,0 +1,10 @@
+{
+  "debug_code": 3700379,
+  "debug_code_hex": "38769b",
+  "code_bits": 22,
+  "pbkdf2_rounds": 1710,
+  "tree_height": 4,
+  "salt_hex": "50696b615350587c666163746f72792d73616c747c7632",
+  "flag": "ITECHNO26{p1k4Chu_l00ks_ador4ble_4nd_i_L0VE_pik4chu}",
+  "nonce_hex": "6908fb8034f28dbfb02bcb2fd479a32d"
+}
