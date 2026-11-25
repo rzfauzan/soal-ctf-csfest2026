@@ -1,0 +1,55 @@
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body {
+  font-family: Arial, sans-serif;
+  color: #edf4ff;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 18%, rgba(255,255,255,.85) 0 1px, transparent 2px),
+    radial-gradient(circle at 83% 61%, rgba(255,255,255,.75) 0 1px, transparent 2px),
+    radial-gradient(circle at 38% 72%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+    linear-gradient(135deg, #071017 0%, #171e31 58%, #111418 100%);
+}
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap: 18px;
+  align-items: end;
+  padding: min(7vw, 72px);
+}
+.panel {
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 8px;
+  background: rgba(8, 13, 22, .78);
+  box-shadow: 0 28px 100px rgba(0,0,0,.35);
+}
+.hero { padding: clamp(28px, 6vw, 72px); min-height: 440px; display: flex; flex-direction: column; justify-content: flex-end; }
+.brand { display: flex; gap: 10px; align-items: center; font-weight: 700; color: #f8d36b; }
+.mark { width: 17px; height: 17px; background: #f7c84b; clip-path: polygon(50% 0,61% 36%,100% 50%,61% 64%,50% 100%,39% 64%,0 50%,39% 36%); }
+h1 { margin: 58px 0 10px; font-size: clamp(54px, 8vw, 118px); line-height: .9; letter-spacing: 0; }
+.lead { max-width: 520px; color: #b9c7da; font-size: 18px; line-height: 1.55; }
+.button {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 40px;
+  align-items: center;
+  padding: 0 16px;
+  margin-top: 22px;
+  border-radius: 6px;
+  background: #f7c84b;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 700;
+}
+.status { padding: 24px; align-self: stretch; }
+.status h2 { margin: 0 0 18px; font-size: 18px; }
+dl { margin: 0; display: grid; gap: 12px; }
+dl div { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
+dt { color: #8fa1bb; }
+dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .shell { grid-template-columns: 1fr; padding: 18px; align-items: stretch; }
+  .hero { min-height: 360px; }
+  dl div { grid-template-columns: 1fr; gap: 3px; }
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Itechno Store - Catalog{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">JKT warehouse channel</p>
+    <h1>Itechno Store</h1>
+    <p class="lead">Hardware lab, point-of-sale equipment, and inventory tools for teams that run events under pressure.</p>
+  </div>
+  <div class="hero-panel">
+    <span>Fulfillment</span>
+    <strong>02:14</strong>
+    <small>Average pick time today</small>
+  </div>
+</section>
+
+<section class="toolbar">
+  <form action="{{ url_for('api_search') }}" method="get">
+    <input name="q" placeholder="Search catalog" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+  <span class="status">Managed storefront build 2605</span>
+</section>
+
+<section class="product-grid">
+  {% for product in products %}
+  <article class="product-card" style="--accent: {{ product.accent }}">
+    <div class="product-visual">
+      <span>{{ product.category[:2].upper() }}</span>
+    </div>
+    <div class="product-copy">
+      <p>{{ product.category }}</p>
+      <h2>{{ product.name }}</h2>
+      <span>{{ product.price }}</span>
+      <a href="{{ url_for('product', slug=product.slug) }}">View item</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+<!-- stock sync is handled by the legacy cpsrvd compatibility bridge -->
+{% endblock %}

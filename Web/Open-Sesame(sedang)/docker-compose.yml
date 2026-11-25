@@ -1,0 +1,8 @@
+services:
+  open-sesame:
+    build: .
+    ports:
+      - "8003:8080"
+    environment:
+      FLAG: "CSF{opeeeeeen_plsss5s_opennnnnn_ses4mee3e}"
+    restart: unless-stopped

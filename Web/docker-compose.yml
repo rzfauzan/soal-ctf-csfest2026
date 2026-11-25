@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # 1. STARS (Web - Mudah) -> Akses: http://<ip>:8001
+  # ==========================================
+  stars-frontend:
+    build: ./Stars
+    command: ["python3", "/app/src/frontend.py"]
+    environment:
+      BACKEND_HOST: stars-backend
+      BACKEND_PORT: "9000"
+      FRONTEND_PORT: "8000"
+    ports:
+      - "8001:8000"
+    depends_on:
+      - stars-backend
+    restart: unless-stopped
+    networks:
+      - stars-net
+
+  stars-backend:
+    build: ./Stars
+    command: ["python3", "/app/src/backend.py"]
+    environment:
+      BACKEND_PORT: "9000"
+      FRONTEND_NAME: STAR-FE-01
+      FLAG: CSF{i_l0v3_a_milli0n_0f_th3_st4rs_sh1n1ng}
+      STAR_SECRET: change-this-secret-on-remote-csf26
+    expose:
+      - "9000"
+    restart: unless-stopped
+    networks:
+      - stars-net
+
+  # ==========================================
+  # 2. LEVI (Web - Mudah) -> Akses: http://<ip>:8002
+  # ==========================================
+  web-levi:
+    build: ./LEVI/src
+    ports:
+      - "8002:80"
+    restart: unless-stopped
+    networks:
+      - ctf-net
+
+  # ==========================================
+  # 3. OPEN SESAME (Web - Sedang) -> Akses: http://<ip>:8003
+  # ==========================================
+  open-sesame:
+    build: ./Open-Sesame
+    ports:
+      - "8003:8080"
+    environment:
+      FLAG: "CSF{opeeeeeen_plsss5s_opennnnnn_ses4mee3e}"
+    restart: unless-stopped
+    networks:
+      - ctf-net
+
+  # ==========================================
+  # 4. KUCING LKS JINJA (Web - Sedang) -> Akses: http://<ip>:8004
+  # ==========================================
+  ssti-kucing:
+    build: ./Kucing-LKS-Jinja
+    ports:
+      - "8004:5000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    networks:
+      - ctf-net
+
+  # ==========================================
+  # 5. ITECHNO STORE (Web - Sulit) -> Akses: http://<ip>:8005
+  # ==========================================
+  itechno-store:
+    build: ./Itechno-Store
+    ports:
+      - "8005:8000"
+    environment:
+      FLAG: "CSF{woooowwww_th3_st0r3_1s_gr34t!_h0w_tF_u_H4ck_tHe_sYstEm_br0?!}"
+      SESSION_DIR: "/tmp/itechno-store-sessions"
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+    networks:
+      - ctf-net
+
+networks:
+  stars-net:
+    driver: bridge
+  ctf-net:
+    driver: bridge
+

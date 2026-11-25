@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build: .
+    command: ["python3", "/app/src/frontend.py"]
+    environment:
+      BACKEND_HOST: backend
+      BACKEND_PORT: "9000"
+      FRONTEND_PORT: "8000"
+    ports:
+      - "8001:8000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: .
+    command: ["python3", "/app/src/backend.py"]
+    environment:
+      BACKEND_PORT: "9000"
+      FRONTEND_NAME: STAR-FE-01
+      FLAG: CSF{i_l0v3_a_milli0n_0f_th3_st4rs_sh1n1ng}
+      STAR_SECRET: change-this-secret-on-remote
+    expose:
+      - "9000"
+    restart: unless-stopped
